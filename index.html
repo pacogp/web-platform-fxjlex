@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Proceso Completo KDD en el ambito de una empresa de fabricación de muebleS tapizadoS</title>
+  <meta name="description"
+    content="Entrega del Seminario de la asignatura MBIG07 Visualización de Datos del Master en Big Data y Data Science impartido por la Universidad Internacional de Valencia (VIU) por el profesor Raúl Reyero">
+  <meta name="author" content="Francisco Gómez Parra">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
+</head>
+<header style="width:100%;height:100px;display:flex;justify-content:space-between">
+  <div style="margin:10px;height:90px;min-width:100px;display:inline-block">
+    <img src="https://i.ibb.co/vHtqyyK/Logo.png" alt="Logo" border="0" style="height:90px">
+  </div>
+  <div style="margin:10px;height:90px;min-width:500px;display:inline-block">
+    <h1 align="center">Proceso Completo KDD </h1>
+    <h4 align="center">Estudio se realiza en el ámbito de una empresa de fabricación de muebles tapizados</h4>
+    <h6 align="center"> Alumno: FRANCISCO GOMEZ PARRA
+      <br>
+        Stackblitz:<a href="https://web-platform-biwf9e.stackblitz.io/" align="left">
+        https://web-platform-biwf9e.stackblitz.io/</a>
+      <br>
+        Github: <a href="https://github.com/pacogp/SEMINARIO" align="left">
+        https://github.com/pacogp/SEMINARIO </a>
+      <br>
+  </div>
+  <div style="margin:10px;height:90px;min-width:110px;display:inline-block">
+    <h6 align="center"><span>27 de Abril del 2021</span></h6>
+  </div>
+</header>
+<div style="width:800px;margin-left:calc( 50% - 400px ); margin-top:80px;">
+  <div style="display:inline-block;width:800px">
+    <h3>Abstract:</h3>
+    <p align="justify">Nowadays and more and more companies or organizational entities require and need applications,
+      tools, techniques and processes adapted to information systems that facilitate the development of activities
+      agiles and effectives decision-making. This report presents the
+      <b>“KDD process” (Knowlegde Discovery Databases)</b> through the context of an upholstered furniture manufacturer
+      company, and as a preliminary step for providing knowledge and help in decision-making into the organization.</p>
+
+    <p align="justify"><b>Key words:</b> KDD process, Knowledge search management, Information system, Data mining,
+      Upholstered furniture, sofas, data processing, data storage, Business intelligence, application of statistical
+      algorithms, Relational BBDD, dataset.</p>
+
+    <h3>Introducción:</h3>
+    <p align="justify">La Empresa a la cual me he dirigido y entrevistado para la adquisición de los datos es una
+      organización del <b>Sector del Mueble Tapizado de la Región de Murcia.</b> Es una Empresa familiar de más de 50
+      años desde su fundación y dedicada a la fabricación y comercialización de mueble tapizado. </p>
+
+    <p align="justify">En la primera entrevista realizada con la Dirección de la Empresa, además de explicar las
+      intenciones de mi búsqueda de conocimiento útil para la misma, necesitaba la obtención de datos e información
+      relevante de dominio del sector para la realización de esta actividad. Para ello, pregunté en qué área de la
+      empresa o problema a abordar estarían más interesados en que me centrara para realizar el trabajo.</p>
+
+    <h3>Definición del problema y objetivos:</h3>
+    <p align="justify">La Dirección de la empresa estaba preocupada en el descenso significativo y baja demanda de sus
+      sofás fabricados en piel. Me comentan “la piel es una materia prima de coste muy elevado” y empleada para la
+      fabricación de sofás de alta gama. Observan que la demanda de sofás en los que emplean piel ha sufrido una bajada
+      importante en los últimos meses y que no saben cómo ni de qué forma debían ajustar o intentar predecir la demanda
+      de los sofás, por lo que se requerirá un análisis y estudio previo del comportamiento de los consumidores. También
+      necesitaban prever (predicción) o hacer una extrapolación del coste de compra de materiales para cubrir la
+      previsión de demanda a semanas o meses vista. </p>
+
+    <p align="justify">¿Porqué la piel?, pregunté. La contestación fue, que disponían de una gran cantidad almacenada de
+      diferentes tipos de piel y en distintos colores, ya que la demanda de sofás en piel había descendido a niveles
+      nunca vistos en la empresa. Me comentan que los sofás en piel hasta hace muy poquito suponían el 50% de su
+      facturación y que ahora no supone un 20% de la misma. No entienden muy bien, cuál es el motivo de ese descenso y
+      el proceso por el cual un cliente decide comprar o no un Sofá en piel. Es por ello que planteo de realizar una
+      regresión logística de la muestra para determinar la “clase” en términos binarios, si un sofá será demandado en
+      Tela o Piel, acorde a una serie de atributos supervisados.</p>
+
+    <p align="justify">Pues bien, al día siguiente me pongo manos a la obra y decido intentar averiguar, predecir la
+      demanda de sofás en el seno de la Empresa, ya no sólo de sofás en piel sino también de sofás tapizados en tela,
+      cómo es el proceso de demanda de los clientes, cuales son factores internos y externos que puedan afectar a la
+      misma, así como las variables o atributos significativos de los sofás, especialmente en piel…</p>
+
+    <p align="justify">Pregunto de qué datos podría disponer para lanzar un estudio y me contestan que tengo disponible
+      la BBDD de su sistema de gestión desde el año 2019 en adelante, ya que acaban de migrar a un ERP nuevo y los datos
+      de los que dispongo son desde Enero de 2019. No disponían de ningún tipo de reporte más o menos elaborado de apoyo
+      que me pudiera orientar por donde podría comenzar estadísticamente entender o hacer un análisis previo del cómo y
+      qué forma se manifiesta la demanda sofás o conocimiento del domino (o no me quisieron aportar más información!!!.)
+    </p>
+
+    <p align="justify">Con ayuda del responsable informático accedo a la BBDD activa y ahí comienza mi aventura en todo
+      este proceso de búsqueda de la información, en la proporción de información, conocimiento útil y comprensible
+      sobre tendencias o patrones, proyectivos o prospectivos que apoyen y fundamenten la toma de decisiones, objetivos
+      y expectativas de la organización.</p>
+
+    <p align="justify">La Dirección de la empresa indica que la venta de sofás en piel está orientada a un nicho de
+      mercado de clientes finales con poder adquisitivo medio-alto, por lo que la demanda de este tipo de producto está
+      relacionada con la tasa de desempleo y renta per cápita de las provincias.
+      <b>La Dirección actualmente desconoce cómo éstas variables pueden afectar a la demanda.</b></p>
+
+    <p align="justify">Por tanto como <b>primer objetivo</b> es analizar cómo se está produciendo la demanda e intentar
+      predecir las ventas en sofás tapizados en piel.</p>
+
+    <p align="justify">Dentro del proceso de análisis de la demanda, la dirección de la empresa
+      plantea<b>un segundo objetivo</b>, hacer estudio de la "Fecha de servicio", concretamente ver el número de dias
+      medios en que un sofa permanece entre sus fases de producción, se trata de analizar el ciclo, desde que el cliente
+      pide un sofá hasta que éste es servido.</p>
+
+    <p align="justify">Por último y como <b>tercer objetivo</b>, me plantean realizar un estudio en el que se visualice
+      en tiempo real o se pueda realizar un seguimiento, diário o semanal de las productividades de las secciones
+      productivas más importantes: Tapizado, Montaje, Enfundado y Embalado. </p>
+
+  </div>
+</div>
+
+<div class="pagebreak"> </div>
+
+<div style="width:800px;margin-left:calc( 50% - 400px );display:flex;justify-content:space-between">
+
+  <div style="margin:10px;height:90px;min-width:250px;display:inline-block">
+    <img src="https://i.ibb.co/WpDqfjC/audiencia.png" style="height:90px; margin-left: 80px" >
+    <h3 style="width:100%;margin-left: 72px" aligncenter>AUDIENCIA</h3>
+    <p style="text-align: justify">La audiencia a la que me dirijo es al CEO de la organización y al equipo de dirección
+      estratégica</p>
+  </div>
+
+  <div style="margin:10px;height:90px;min-width:250px;display:inline-block">
+    <img src="https://i.ibb.co/LnLwF7S/mensaje.jpg" style="height:90px; margin-left: 80px">
+    <h3 style="width:100%;margin-left: 90px" aligncenter>MENSAJE</h3>
+    <p style="text-align: justify"> El mensaje del presente informe, busca trasladar a la audiencia explicando y dotando
+      de la información necesaría a través de los gráficos y explicaciones relativas a los mismos.</p>
+  </div>
+
+</div>
+
+<div style="margin-top:125px">&nbsp</div>
+
+
+<div style="width:800px;margin-left:calc( 50% - 400px )">
+
+  <h3>Contexto, conocimiento del dominio y Salida proceso KDD:</h3>
+
+  <p align="justify">En los primeros estadios de la tarea intento conocer y profundizar aún más en el contexto de la
+    organización y concretamente en cómo oferta la empresa el producto a través de su web y veo lo siguiente:
+    Extraigo de Google Analitics que las visitas a través de su web es eminentemente Nacional con un 92.2%
+    Existe además una clasificación de producto muy marcada en clases, además de si el tapizado es Tela o Piel, y son:
+    Clase Mecanismo: Deslizantes, Relax, Fijos, Chaiselong, Cama, Cojines y Rincones.
+    Clase Geolocalización: Por provincias.</p>
+
+  <img src="https://i.ibb.co/qCXTJcf/usuarios.png" alt="usuarios" border="0">
+
+  <a href="https://ibb.co/wYmxKVH"><img src="https://i.ibb.co/mSWMHks/provincias.png" alt="provincias" border="0"></a>
+
+  <h6 align="center"><span>Graficos: Google Analitics, Fuente: cuenta de la propia empresa</span></h6>
+
+  <p align="justify">Para comprobar y verificar lo que la dirección de la Empresa indica respecto del descenso de la
+    ventas de sus productos o sofás de fabricación en piel, represento a continuación y como salida del proceso KDD, la
+    evolución de las necesidades de compra de MP en € de todos los sofás en Piel pedidos. Efectivamente muestra un
+    descenso</p>
+
+  <a
+    href="https://ibb.co/7pQC6td"><img src="https://i.ibb.co/n1Bm5MN/Evoluci-n-piel.png" alt="Evoluci-n-piel" border="0"></a>
+
+  <h6 align="center"><span>Conexión enlace interactivo (PowerBi Pag.1):<a href="https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405" align="left"> https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405</a></h6>
+     
+    <p align="justify">En la siguiente Visualización Muestro la descomposición de la serie temporal de la variable calculada MARGEN_UDS_LINEA (Diferencia entre el precio de venta y el coste de la MP por línea) y cuyas desviaciones standard estén por debajo de los 350 €. Observamos (Línea de tendencia TREND) que desde Octubre del año pasado los márgenes  han ido descendiendo progresivamente hasta última semana analizada.</p>
+
+    <a href="https://ibb.co/BBHgyQm"><img src="https://i.ibb.co/4pwj8Xc/descomposici-n.png" alt="descomposici-n" border="0"></a>
+
+          <h6 align="center"><span>Conexión enlace interactivo (PowerBi.3):<a href="https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405" align="left"> https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405</a></h6>
+
+        <p align="justify">En la siguiente visualización se muestran los top 15 MODELOS por importe de venta. El modelo Top para la piel es el modelo CIN “Cinthia” y ANG “Angela” para lo sofás tapizados en tela. También y para profundizar más para la categoría sofás en piel, vemos que el 61% del importe de los pedidos se realizan para los módulos de sofá de 1 plaza y en segundo lugar los de 2 plazas con el 22% , mientras que en tela el módulo de sofá más vendido son los sofás de 3 plazas 38% y seguidos los de 1 plaza con el 37%.</p>
+  
+    <a href="https://ibb.co/HHNyq8N"><img src="https://i.ibb.co/CHJyQGJ/Comparativa-pedidos-tela-piel.png" alt="Comparativa-pedidos-tela-piel" border="0"></a>
+
+          <h6 align="center"><span>Conexión enlace interactivo (PowerBi Pag.4):<a href="https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405" align="left"> https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405</a></h6>
+
+        <p align="justify">El seleccionar el gráfico de anillos, no he querido dar importancia a la precisión del importe sino, más a la composición que cada NUM_PLAZAS representa respecto al total. </p>
+
+        <p align="justify">A continuación muestro matriz de correlación de ciertas variables, para ver la intensidad con las que se relacionan entre ellas. Es muy interesante ver como las comisiones dadas a los representante están fuertemente relacionada con el margen_bruto. </p>
+         <p align="justify">En power bi también es posible visualizar los Cluster que se producen entre distintas variables. En este ejemplo muestro los cluster por NUM_PLAZA entre las variables MARGEN_BRUTO y el Coste_Tapizado_Agrup.En éste caso existen ciertos “outlaiers” por encima de un margen_bruto de 2500 y 500 de Coste_Tapizado…
+</p> 
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/MsRKYbK/correlaci-n.png" alt="correlaci-n" border="0"></a>
+    <a href="https://ibb.co/kh9HCMk"><img src="https://i.ibb.co/fCn1wQB/clusters.png" alt="clusters" border="0"></a>
+
+          <h6 align="center"><span>Conexión enlace interactivo (PowerBi Pag.2):<a href="https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405" align="left"> https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405</a></h6>
+
+               <p align="justify">También realizo la salida de los importes (Gráfico de barras de componentes y subcomponentes) de pedidos acumulados por provincia, según por tipo de mecanismo distinto. Vemos que la provincia de Alicante es la que mayor pedidos en sofás Tapizados en piel realiza y Madrid la que mayor acumula en Tela.</p>
+
+    <a href="https://ibb.co/GC6Wck0"><img src="https://i.ibb.co/1Rgr8KL/Clasificaci-n-por-provincia.png" alt="Clasificaci-n-por-provincia" border="0"></a>
+
+          <h6 align="center"><span>Conexión enlace interactivo (PowerBi Pag.5):<a href="https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405" align="left"> https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/fd2ed7e9-2379-4cad-8eec-b971fd2bd432?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405</a></h6>
+  </div>
+  
+  <div style="width:800px;margin-left:calc( 50% - 400px )">
+
+    <h3>Proceso KDD y obtención del Dataset empleado</h3>
+
+       <p align="justify">El proceso KDD y Data Mining eran conceptos que inicialmente pensé eran lo mismo, y lo cierto es que el KDD engloba elementos y conceptos tan importantes como la interpretación y evaluación que el Data Mining no contempla con la misma profundidad para encontrar el conocimiento.</p>
+
+       <p align="justify">KDD secuencia varias etapas que muestro en la siguiente figura:</p>
+
+       <a href="https://imgbb.com/"><img src="https://i.ibb.co/x2stTyM/kdd.png" alt="kdd" border="0"></a>
+
+
+        <p align="justify">Cada una muy importante para la transición/conversión de los datos iniciales en conocimiento.
+        Existe un factor “diferenciador” y de “ingenio” en la minería de datos, y es en cómo somos capaces de implementar, presentar, describir o predecir mediante, los patrones hallados, los modelos predictivos/descriptivos que sirvan como fuente de conocimiento y de aplicabilidad futura.
+        La idea es diseñar una aplicación o proceso más o menos automático de adquisición, el almacenamiento, procesamiento y transformación de los datos para la obtención de un “modelo” adecuado que ayude, prevea o describa la realidad, además se ajuste y amolde a las decisiones optimas lo más rápidamente posible.</p>
+         <p align="justify">Ya que la empresa no dispone de informes o algún tipo de cuadro de mando de partida, en la medida que vaya avanzando en el proceso KDD seleccionando, procesando o transformando los datos, realizaré y me apoyaré en algún tipo de visualizaciones de los datos, a fin de comprobación  de la calidad/validez de los mismos, dada la importancia de las fases iniciales como son la selección, preprocesos o las transformaciones de los datos para una posterior y correcta y eficaz realización de minería de datos. </p>
+       
+
+        <p align="justify">Las fuentes de datos empleadas las esquematizo en siguiente figura de elaboración propia.En este apartado selecciono aquellos datos que observo más relevantes, valiosos y de calidad, discrimino aquellas variables que me parecen superfluas o de pobre contenido, veo si existen valores inconsistentes o perdidos, en definitiva, me centro en aquellos datos que me conduzcan a una alta calidad de conocimiento en la extracción. </p>
+
+        <a href="https://ibb.co/3yxdYHz"><img src="https://i.ibb.co/HDc4pQd/esquema-problema.jpg" alt="esquema-problema" border="0"></a>
+
+        <p align="justify">Inicialmente realizo conexión con la BBDD de la empresa con dos herramientas muy importantes para el proceso de selección de los datos, éstas son:</p>
+        
+              
+      <div class="pagebreak"> </div>
+
+              <div style="width:800px;margin-left:calc( 50% - 400px );display:flex;justify-content:space-between">
+          
+              <div style="margin:10px;height:90px;min-width:250px;display:inline-block">
+                  <img src="https://i.ibb.co/wp7f5Mz/crystal-reports-logo-300x116.png" style="height:90px; margin-left: 80px" >
+                  <h3 style="width:100%;margin-left: 72px" aligncenter>Generador de informes</h3>
+                 
+              </div>
+
+                     
+              <div style="margin:10px;height:90px;min-width:250px;display:inline-block">
+                  <img src="https://i.ibb.co/DPJj5tT/New-IBELogo-full.png" style="height:90px; margin-left: 80px">
+                  <h3 style="width:100%;margin-left: 90px" aligncenter>Administración de BBDD</h3>
+                 
+              </div>
+              </div>
+        <div style="margin-top:25px">&nbsp</div>
+        
+        
+        
+      <div style="width:800px;margin-left:calc( 50% - 400px )">
+
+        <p align="justify"><b>Con IBExpert</b> veo la estructura de datos de la BBDD interna de la empresa y hacer una relación de tablas que puedan ser relevantes para extraer los datos significativos y cuáles no.Esta herramienta me permite visualizar rápidamente los campos (atributos) de las tablas (entidades) que componen la BBDD, el tipo de datos de los campos, valores nulos… etc .</p>
+
+        <p align="justify"><b>Con CRYSTAL REPORT</b> conecto la BBDD y tras algún tiempo de estudio para determinar los campos que entre las tablas pueden ser relacionados, llego a la siguiente conectividad:</p>
+
+        <a href="https://ibb.co/tQyMG70"><img src="https://i.ibb.co/sbLvf0T/crystal-relaciones.png" alt="crystal-relaciones" border="0"></a>
+
+         <p align="justify"><b>Con PowerBi</b> con el que modelo los datos, transformo y limpio los mismos y así como realizo todas la visualizaciones anteriores y conformar y exportar el dataset que voy a nacesitar para la realización del Notebook con Python, para la realización de un arbol de decisión, a modo de poder predecir y bajo qué condiciones (en finción de las variables características) la demanda de muebles tapizados en piel, tal y como se determinó en el objetivo 1. Hacer Click en el siguiente enlace para ver desarrollo y obtención del arbol:</p> 
+         
+        google colab: <a href="https://colab.research.google.com/drive/1IZVGw1qMxTiiEttOMIiLyhCwOiTvsD75?usp=sharing" > https://colab.research.google.com/drive/1IZVGw1qMxTiiEttOMIiLyhCwOiTvsD75?usp=sharing </a>
+
+
+      <div class="pagebreak no-print"> </div>
+      <div style="width:800px;margin-left:calc( 50% - 400px )">
+      <div style="display:inline-block;width:800px"><h3>Cuadro de Mando para objetivos 2 y 3:</h3><p align="justify">A continuación muestro un pequeño cuadro para el seguimiento y control de los objetivos 2, y 3 planteados por la Dirección </p>
+      <ul align="justify">
+      <p><b>Objetivo 2</b>: Visualización de KPI´s de las principales secciones de fabricación. Se realiza Dashboard interactivo en PowerBi.</p>
+
+      <a href="https://ibb.co/r3dFTD1"><img src="https://i.ibb.co/w7cB35x/KPI-Secciones.png" alt="KPI-Secciones" border="0"></a>
+
+      <P>Cada KPI, establece el nivel de producción entre el rango de fechas deseado de las distintas sección de fabricación, comparándolo con un indicador de referencia calculado para cada una de las mismas. El valor de referencia indica el número de sofás objetivos por persona de las sección y hora de trabajo. Un Color Rojo, indica que el nivel de producción se encuentra por bajo del objetivo, y un color verde, cuando se está por encíma del indicador de referencia. Además se muestra el nímero de unidades o sofás embalados/semana por cada una de las líneas de embalado (Embalado Foto y Pedro Kokoa).</P>
+
+      <a href="https://ibb.co/89wnK6X"><img src="https://i.ibb.co/QMV7brX/KPI-Secciones-evolucion.png" alt="KPI-Secciones-evolucion" border="0"></a>
+
+
+             <h6 align="center"><span>Conexión enlace interactivo (PowerBi Resumen_gaps & PPH_Evolution):<a href="https://app.powerbi.com/reportEmbed?reportId=95e4a7c3-5c37-4920-9eda-cf33ed9d0e41&autoAuth=true&ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXdlc3QtZXVyb3BlLWItcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" align="left"> https://app.powerbi.com/reportEmbed?reportId=95e4a7c3-5c37-4920-9eda-cf33ed9d0e41&autoAuth=true&ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXdlc3QtZXVyb3BlLWItcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D</a></h6>
+
+             
+      <P>En éste cuadro se muestra además de los KPI anteriores por sección, cómo ha sido la tendencia semana a semana, en función del rango de fechas que se seleccione.</P>
+
+      
+
+      <p><b>Objetivo 3</b>: Visualización para el análisis del <b>cumplimiento de la fecha de servicio</b> de la empresa en cada. Se realiza Dashboard interactivo en PowerBi.</p>
+
+      <a href="https://ibb.co/5K4rHvF"><img src="https://i.ibb.co/dmMPY6g/fecha-entrega.png" alt="fecha-entrega" border="0"></a>
+
+       <h6 align="center"><span>Conexión enlace interactivo (PowerBi ANALISIS_PLAZO _ENTREGA):<a href="https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/95e4a7c3-5c37-4920-9eda-cf33ed9d0e41?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405" align="left"> https://app.powerbi.com/groups/90ef3954-6e4e-45f6-927d-b9e30b1ff5f6/reports/95e4a7c3-5c37-4920-9eda-cf33ed9d0e41?ctid=10342a31-42cc-4bda-9cd0-a7fa4cd42405</a></h6>
+
+      <P>En éste gráfico se representa dinámicamente el número de días medio que un sofá permanece en una fáse de fabricación antes de pasar a la siguiente. En este TreeMap se analizan todos los sofás fabricados entre las fechas de albarán o expedición (seleccionable dinámicamente) desde que un pedido es demandado por el cliente hasta que es expedido o servido. Vemos que la fase de corte con diferencia, es la que mayor número de días consume del plazo dado o comprometido con el cliente (48 días), Por lo que es prácticamente el 50% del tiempo disponible para servir en plazo. Se indica el número de días por encima de la fecha de servício comprometido con el cliente, vemos que lo supera en 15 días.</P>
+
+      <h3>Conclusiones:</h3><p align="justify">
+      
+      <p>Tras Proceso de Kdd, se ha intentado determinar, mediante arbol de decisión (notebook) analizar y predecir, cómo afectan las variables  seleccionadas de nuestro modelo, en la demanda de un sofá tapizado en piel o tela. Con ello, tratamos de dar luz al objetivo numero 1 demandado por la empresa.</p> 
+
+      <p>A continuación dejo, un análisis de rendimientos de aquellas secciones mas importantes de fabricación, los cuales pueden ser seguidos en tiempo real, ya que los resultados de los dashboard se actualizan constantemente y a medida que se capturan los datos en la planta de fabricación. Importante para la toma de decisiones y/o acciones correctivas respecto a la consecución de determinados objetivos de fabricación, en este caso unidades procucidas por persona y hora. Esto en cuanto al objetivo número 2 establecido.</p>
+
+      <p>Finalmente, acabo haciendo un estudio calculando los tiempos medios en los que todos los pedidos servidos en un rango de fechas, quedan en una fase de producción antes de pasar a la siguiente, para así ver qué fases producctivas son críticas y más afectan a la consecución en el cumplimiento con el cliente de servirle en tiempo y forma. Ello viene a explicar el objetivo 3 planteado al inicio de la memoria. Cabe destacar que la fase de "corte" es la más crítica y que lleva más del 50% del tiempo del total dado al cliente para servir el producto demandado. </p>
+
+      <h3>Herramientas utilizadas:</h3><p align="justify">
+
+        
+      <ul align="justify">
+      <p><b>PowerBi</b>: Herramienta importante ETL y de visualización. Y mediante he dejado link a los dashboard diseñados.</p>
+
+      <p><b>Crystal Report</b>: Herramienta de generación de informes que me ha permitido enlazar con el ERP de la empresa y visualizar y relacionar los datos tabulares muy rápidamente. Importantísima en el proceso de selección de datos y extracción de los mismos.</p>
+
+      <p><b>IBExpert</b>: Herramienta de administración de BBDD, por la que rápidamente he podido ver y recorrer la ingente cantidad de tablas y sus datos, a la hora de hacer una buena selección de los datos que he utilizado en todo el proceso. Me ha permitido la creación de ciertas vistas personalizadas de los datos para que el proceso de extracción más sencillo y rápido.</p>
+
+      <p><b>Google colab</b>: Herramienta que me ha permitido programar en Python, el desarrolo del arbol de decición para el objetivo 1.</p>
+
+      <p><b>https://imgbb.com/</b>: Herramienta web, muy útil para compartir todas la imágenes utilizadas en el proyecto.</p>
+
+      <p><b>StackBlitz</b>: Para compartir y desarrollar en HTML la presente memoria. En éste apartado he de decir que nunca antes había programado en este lenguaje, por lo que ha sido ilustrador la pontancialidad del mismo. Para mi ha sido un autentico reto hacer este memoria/seminario en Stackblitz</p>
+
+      <p><b>GitHub</b>: Donde comparto y dejo este seminario</p>
+
+
+      <h3>Bibliografía:</h3><p align="justify">
+
+      <p>No he utilizado referencias algunas para la realización de este seminario.</p>
+         
+  </div>
+  </div>
+  </div>
+  </div>
+  </html>
